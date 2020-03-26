@@ -1,0 +1,8 @@
+{
+  "name": "crud",
+  "version": "1.0.0",
+  "description": "crud with parças",
+  "main": "index.js",
+  "author": "Furico, Database e Cabeça",
+  "license": "MIT"
+}
