@@ -3,18 +3,12 @@ const readline = require('readline').createInterface({
     output: process.stdout
 })
 
-let isValidNumber = false;
-
-while(!isValidNumber) {
-
+function readNumber() {
     readline.question('type a number between 0 - 10: ', (number) => {
-
-        if (number >= 0 && number <= 10)
-            isValidNumber = true
-
-        console.log(`${number} is valid number`)
-
-        readline.close();
+        if( number >= 0 && number <= 10 )
+            return readline.close()
+        readNumber()
     })
-
 }
+
+readNumber()
