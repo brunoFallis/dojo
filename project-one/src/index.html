@@ -30,18 +30,24 @@
                 return
             }
 
-            var requestParam = { 
-                method: 'POST',
-                mode: 'no-cors',
-                cache: 'default' 
+            const user = {
+                userName: name.value,
+                userAge: age.value
             }
 
-            // TODO
-            fetch('http://localhost:3000/user', requestParam)
-            .then(response => response.json())
-            .then(response => {
-                console.log(response)
+            createUser(user)
+        }
+
+        function createUser(user) {
+            fetch('http://localhost:3000/user', {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                method: 'POST',
+                body: JSON.stringify(user)
             })
+            .then(response.json())
+            .then(data => console.log(data));
         }
 
     </script>
