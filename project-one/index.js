@@ -17,7 +17,8 @@ fs.readFile('./index.html', function (err, html) {
 });
 
 app.post('/user', function(req, res) {
-    console.log('entrei')
-    res.send('hello world');
+    res.send(response);
 });
+
+app.listen(3000)
 

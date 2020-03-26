@@ -32,12 +32,12 @@
 
             var requestParam = { 
                 method: 'POST',
-                mode: 'cors',
+                mode: 'no-cors',
                 cache: 'default' 
             }
 
             // TODO
-            fetch('http://localhost:8080/user', requestParam)
+            fetch('http://localhost:3000/user', requestParam)
             .then(response => response.json())
             .then(response => {
                 console.log(response)
