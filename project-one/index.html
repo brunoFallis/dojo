@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+</head>
+
+<body>
+
+    <label for="name">Name:
+        <input id="name" type="text">
+    </label>
+
+    <label for="age">Age:
+        <input id="age" type="number">
+    </label>
+
+    <input type="button" value="submit" onclick="save()">
+
+    <script>
+
+        function save() {
+
+            const name = document.getElementById('name')
+            const age = document.getElementById('age')
+
+            if (!name.value || !age.value) {
+                return
+            }
+
+            console.log(name.value, age.value)
+
+            // TODO
+            // fetch()
+            // .then(response => response.json())
+            // .then(response => {
+            //     // TODO
+            // })
+        }
+
+    </script>
+</body>
+
+</html>
