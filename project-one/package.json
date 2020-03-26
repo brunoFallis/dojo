@@ -4,5 +4,8 @@
   "description": "crud with parças",
   "main": "index.js",
   "author": "Furico, Database e Cabeça",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }

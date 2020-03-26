@@ -1,6 +1,9 @@
 const http = require('http')
 const fs = require('fs')
 
+var express = require('express');
+var app = express();
+
 fs.readFile('./index.html', function (err, html) {
     if (err) {
         throw err;
@@ -12,3 +15,9 @@ fs.readFile('./index.html', function (err, html) {
         response.end();
     }).listen(8080);
 });
+
+app.post('/user', function(req, res) {
+    console.log('entrei')
+    res.send('hello world');
+});
+
