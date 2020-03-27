@@ -5,3 +5,5 @@
 	- usuario {nome, idade}
 
 2 - Listar resultados na tela
+
+3 - Botão na lista de resultado para deletar

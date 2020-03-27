@@ -2,6 +2,18 @@ const User = require('../models/User')
 
 module.exports = {
 
+    async delete(request, response) {
+
+        try {
+            await User.deleteOne( { "_id" : ObjectId( request.params.id ) } )
+
+            return response.send({status: 'ok'}).status(200)     
+        } catch (error) {
+            return response.send({status: 'error'}).status(500)
+        }
+       
+    },
+
     async get(request, response) {
 
         const users = await User.find();

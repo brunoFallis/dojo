@@ -42,12 +42,24 @@
                 const table = document.getElementById('tbody')
                 
                 data.forEach(user => {
-                    const name = document.createElement('tr')
-                    const age = document.createElement('tr')
-                    name.value = user.name
-                    age.value = user.age
-                    table.appendChild(name)
-                    table.appendChild(age)
+                    const name = document.createElement('td')
+                    const age = document.createElement('td')
+                    const tr = document.createElement('tr')
+
+                    name.innerHTML = user.name
+                    age.innerHTML = user.age
+
+                    const deleteButton = document.createElement('button')
+
+                    deleteButton.id = user._id
+                    deleteButton.innerHTML = 'x'
+                    // deleteButton.onclick = 
+
+                    tr.appendChild(name)
+                    tr.appendChild(age)
+                    tr.appendChild(deleteButton)
+
+                    table.appendChild(tr)
                 });
             });
         }
@@ -56,8 +68,8 @@
 
         function save() {
 
-            const name = document.getUsersElementById('name')
-            const age = document.getUsersElementById('age')
+            const name = document.getElementById('name')
+            const age = document.getElementById('age')
 
             if (!name.value || !age.value) {
                 return
