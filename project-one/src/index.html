@@ -52,8 +52,12 @@
                     const deleteButton = document.createElement('button')
 
                     deleteButton.id = user._id
+                    deleteButton.value = user._id
                     deleteButton.innerHTML = 'x'
-                    // deleteButton.onclick = 
+                    deleteButton.onclick = (e) => {
+                        const id = e.target.value
+                        deleteUser(id)
+                    }
 
                     tr.appendChild(name)
                     tr.appendChild(age)
@@ -61,6 +65,21 @@
 
                     table.appendChild(tr)
                 });
+            });
+        }
+
+        function deleteUser(id) {
+            fetch(`http://localhost:3000/user/${id}`, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                method: 'DELETE',
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .then(data => {
+                return data;
             });
         }
 

@@ -10,6 +10,7 @@ routes.get('/', function(req, res) {
 })
 
 routes.get('/user', UserController.get);
+routes.delete('/user/:id', UserController.delete);
 routes.post('/user', UserController.save);
 
 module.exports = routes;

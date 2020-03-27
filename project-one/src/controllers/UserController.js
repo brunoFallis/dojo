@@ -5,13 +5,16 @@ module.exports = {
     async delete(request, response) {
 
         try {
-            await User.deleteOne( { "_id" : ObjectId( request.params.id ) } )
 
-            return response.send({status: 'ok'}).status(200)     
+            const { id } = request.params
+
+            await User.deleteOne({ "_id": ObjectId(id) })
+
+            return response.send({ status: 'ok' }).status(200)
         } catch (error) {
-            return response.send({status: 'error'}).status(500)
+            return response.send({ status: 'error' }).status(500)
         }
-       
+
     },
 
     async get(request, response) {
