@@ -8,10 +8,11 @@ module.exports = {
 
             const { id } = request.params
 
-            await User.deleteOne({ "_id": ObjectId(id) })
+            await User.deleteOne({ "_id": id })
 
             return response.send({ status: 'ok' }).status(200)
         } catch (error) {
+            console.log(error)
             return response.send({ status: 'error' }).status(500)
         }
 

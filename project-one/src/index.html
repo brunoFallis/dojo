@@ -29,7 +29,7 @@
 
     <script>
 
-        function getUsers() {
+        function getUsers(isReload) {
             fetch('http://localhost:3000/user', {
                 headers: {
                     'Accept': 'application/json',
@@ -41,6 +41,12 @@
             .then(data => {
                 const table = document.getElementById('tbody')
                 
+                if( isReload ){
+                    table.getElementsByTagName('tr').forEach(row =>{
+                        table.removeChild(row)
+                    })
+                }
+
                 data.forEach(user => {
                     const name = document.createElement('td')
                     const age = document.createElement('td')
@@ -79,7 +85,11 @@
             .then(response => response.json())
             .then(data => console.log(data))
             .then(data => {
-                return data;
+                if( data.status = 'ok' ){
+                    getUsers(true)
+                }else{
+                    alert('DEU PAU')
+                }
             });
         }
 
