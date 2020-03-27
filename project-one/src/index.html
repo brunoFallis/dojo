@@ -19,12 +19,45 @@
 
     <input type="button" value="submit" onclick="save()">
 
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Age</th>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+
     <script>
+
+        function getUsers() {
+            fetch('http://localhost:3000/user', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                method: 'GET',
+            })
+            .then(response => response.json())
+            .then(data => {
+                const table = document.getElementById('tbody')
+                
+                data.forEach(user => {
+                    const name = document.createElement('tr')
+                    const age = document.createElement('tr')
+                    name.value = user.name
+                    age.value = user.age
+                    table.appendChild(name)
+                    table.appendChild(age)
+                });
+            });
+        }
+
+        getUsers()
 
         function save() {
 
-            const name = document.getElementById('name')
-            const age = document.getElementById('age')
+            const name = document.getUsersElementById('name')
+            const age = document.getUsersElementById('age')
 
             if (!name.value || !age.value) {
                 return
@@ -47,8 +80,8 @@
                 method: 'POST',
                 body: JSON.stringify(user)
             })
-            .then(response => response.json())
-            .then(data => console.log(data));
+                .then(response => response.json())
+                .then(data => console.log(data));
         }
 
     </script>
