@@ -42,9 +42,7 @@
                 const table = document.getElementById('tbody')
                 
                 if( isReload ){
-                    table.getElementsByTagName('tr').forEach(row =>{
-                        table.removeChild(row)
-                    })
+                   table.innerHTML = ''
                 }
 
                 data.forEach(user => {
@@ -83,11 +81,10 @@
                 method: 'DELETE',
             })
             .then(response => response.json())
-            .then(data => console.log(data))
             .then(data => {
-                if( data.status = 'ok' ){
+                if (data && data.status == 'ok' ) {
                     getUsers(true)
-                }else{
+                } else {
                     alert('DEU PAU')
                 }
             });
