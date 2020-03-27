@@ -1,3 +1,5 @@
+const User = require('../models/User')
+
 module.exports = {
 
     save(request, response) {
@@ -6,8 +8,7 @@ module.exports = {
         if (!userName || !userAge)
             return response.send().status(400)
 
-        console.log(userName, userAge)
-        // save
+        User.create( { name: userName, age: userAge } )
 
         return response.json(request.body).status(200)
     }
