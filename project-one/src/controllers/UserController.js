@@ -9,7 +9,7 @@ module.exports = {
         console.log(userName, userAge)
         // save
 
-        return response.send({status: 'ok'}).status(200)
+        return response.json(request.body).status(200)
     }
 
 }
