@@ -17,7 +17,7 @@
         <input id="age" type="number">
     </label>
 
-    <input type="button" value="submit" onclick="save()">
+    <input id="submit" type="button" value="submit" onclick="save()">
 
     <table>
         <thead>
@@ -70,10 +70,11 @@
 
                     updateButton.id = user._id
                     updateButton.value = user._id
+                    updateButton.dataset.user = JSON.stringify(user)
                     updateButton.innerHTML = '*'
                     updateButton.onclick = (e) => {
-                        const id = e.target.value
-                        putContentInLabel(id)
+                        const user = JSON.parse(e.target.dataset.user)
+                        putContentInLabel(user)
                     }
 
                     tr.appendChild(name)
@@ -86,11 +87,10 @@
             });
         }
 
-        function putContentInLabel(id) {
-            const list = document.get
-            list.forEach(e => {
-                
-            })
+        function putContentInLabel(user) {
+            document.getElementById('name').value = user.name
+            document.getElementById('age').value = user.age
+            document.getElementById('submit').dataset.id = user._id
         }
 
         function deleteUser(id) {
@@ -113,7 +113,8 @@
 
         getUsers()
 
-        function save() {
+        function save(event) {
+            console.log(event)
 
             const name = document.getElementById('name')
             const age = document.getElementById('age')
@@ -127,7 +128,19 @@
                 userAge: age.value
             }
 
-            createUser(user)
+            if (e.target.dataset.id) {
+                updateUser({
+                    _id: e.target.dataset.id,
+                    ...user
+                })
+            } else {
+                createUser(user)
+            }
+
+            name.value = null
+            age.value = null
+            e.target.dataset.id = null
+
         }
 
         function createUser(user) {
@@ -145,6 +158,7 @@
         }
 
         function updateUser(user) {
+            console.log(user)
             fetch(`http://localhost:3000/user/${user._id}`, {
                 headers: {
                     'Accept': 'application/json',
