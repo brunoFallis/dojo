@@ -47,9 +47,9 @@ module.exports = {
 
         try {
 
-            const updatedUser = await User.updateOne({ '_id': id }, { $set: { name: user.name, age: user.age } })
+            await User.findOneAndUpdate({ _id: id }, { name: user.userName, age: user.userAge })
 
-            return response.status(200).json(updatedUser)
+            return response.status(200).json(user)
 
         } catch (error) {
             console.log(error)

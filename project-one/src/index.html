@@ -114,8 +114,6 @@
         getUsers()
 
         function save(e) {
-            console.log(e)
-
             const name = document.getElementById('name')
             const age = document.getElementById('age')
 
@@ -139,7 +137,7 @@
 
             name.value = null
             age.value = null
-            e.target.dataset.id = null
+            e.target.dataset.id = ''
 
         }
 
@@ -153,12 +151,10 @@
                 body: JSON.stringify(user)
             })
                 .then(response => response.json())
-                .then(data => console.log(data))
                 .then(getUsers(true));
         }
 
         function updateUser(user) {
-            console.log(user)
             fetch(`http://localhost:3000/user/${user._id}`, {
                 headers: {
                     'Accept': 'application/json',
@@ -168,7 +164,6 @@
                 body: JSON.stringify(user)
             })
                 .then(response => response.json())
-                .then(data => console.log(data))
                 .then(getUsers(true));
         }
 
