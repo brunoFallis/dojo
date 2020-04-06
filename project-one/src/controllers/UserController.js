@@ -8,12 +8,12 @@ module.exports = {
 
             const { id } = request.params
 
-            await User.deleteOne({ "_id": id })
+            await User.deleteOne({ '_id': id })
 
-            return response.send({ status: 'ok' }).status(200)
+            return response.status(200).send({ status: 'ok' })
         } catch (error) {
             console.log(error)
-            return response.send({ status: 'error' }).status(500)
+            return response.status(500).send({ status: 'error' })
         }
 
     },
@@ -22,18 +22,40 @@ module.exports = {
 
         const users = await User.find();
 
-        return response.json(users).status(200)
+        return response.status(200).json(users)
     },
 
     async save(request, response) {
         const { userName, userAge } = request.body;
 
         if (!userName || !userAge)
-            return response.send().status(400)
+            return response.status(400).json({ status: 'error' })
 
         const user = await User.create({ name: userName, age: userAge })
 
-        return response.json(user).status(200)
+        return response.status(200).json(user)
+    },
+
+    async update(request, response) {
+
+        const { id } = request.params
+
+        const user = request.body
+
+        if (!(!!user && !!user.userName && !!user.userAge))
+            return response.status(400).json({ status: 'error' })
+
+        try {
+
+            const updatedUser = await User.findByIdAndUpdate({ '_id': id }, user)
+
+            return response.status(200).json(updatedUser)
+
+        } catch (error) {
+            console.log(error)
+            return response.status(500).json({ status: 'error' })
+        }
+
     }
 
 }

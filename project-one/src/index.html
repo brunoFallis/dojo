@@ -119,7 +119,22 @@
                 body: JSON.stringify(user)
             })
                 .then(response => response.json())
-                .then(data => console.log(data));
+                .then(data => console.log(data))
+                .then(getUsers(true));
+        }
+
+        function updateUser(user) {
+            fetch(`http://localhost:3000/user/${user._id}`, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                method: 'PUT',
+                body: JSON.stringify(user)
+            })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .then(getUsers(true));
         }
 
     </script>
