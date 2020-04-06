@@ -51,7 +51,10 @@
                     const tr = document.createElement('tr')
 
                     name.innerHTML = user.name
+                    name.dataset.id = user._id
+
                     age.innerHTML = user.age
+                    age.dataset.id = user._id
 
                     const deleteButton = document.createElement('button')
 
@@ -63,13 +66,31 @@
                         deleteUser(id)
                     }
 
+                    const updateButton = document.createElement('button')
+
+                    updateButton.id = user._id
+                    updateButton.value = user._id
+                    updateButton.innerHTML = '*'
+                    updateButton.onclick = (e) => {
+                        const id = e.target.value
+                        putContentInLabel(id)
+                    }
+
                     tr.appendChild(name)
                     tr.appendChild(age)
                     tr.appendChild(deleteButton)
+                    tr.appendChild(updateButton)
 
                     table.appendChild(tr)
                 });
             });
+        }
+
+        function putContentInLabel(id) {
+            const list = document.get
+            list.forEach(e => {
+                
+            })
         }
 
         function deleteUser(id) {
