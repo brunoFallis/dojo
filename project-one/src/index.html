@@ -17,7 +17,7 @@
         <input id="age" type="number">
     </label>
 
-    <input id="submit" type="button" value="submit" onclick="save()">
+    <input id="submit" type="button" value="submit" onclick="save(event)">
 
     <table>
         <thead>
@@ -113,8 +113,8 @@
 
         getUsers()
 
-        function save(event) {
-            console.log(event)
+        function save(e) {
+            console.log(e)
 
             const name = document.getElementById('name')
             const age = document.getElementById('age')

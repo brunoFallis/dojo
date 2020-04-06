@@ -6,7 +6,8 @@ const routes = require('./routes')
 
 mongoose.connect('mongodb+srv://semana:semana@cluster0-w455j.mongodb.net/test?retryWrites=true&w=majority', {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useFindAndModify: false
 })
 
 app.use(express.json())

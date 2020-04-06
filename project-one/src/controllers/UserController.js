@@ -47,7 +47,7 @@ module.exports = {
 
         try {
 
-            const updatedUser = await User.findByIdAndUpdate({ '_id': id }, user)
+            const updatedUser = await User.updateOne({ '_id': id }, { $set: { name: user.name, age: user.age } })
 
             return response.status(200).json(updatedUser)
 
